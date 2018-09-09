@@ -1,0 +1,93 @@
+body {
+    background: black;
+    font-family: 'Press Start 2P', cursive;
+    background-image: url('../images/select.png');
+    background-size: cover;
+    color: blue;
+    text-shadow: -2px 0 yellow, 0 2px yellow, 2px 0 yellow, 0 -2px yellow;
+}
+
+/* Title properties */
+
+img {
+width: auto;
+height: 250px;
+float: left;
+}
+
+.clearFloat {
+    clear:both;
+}
+
+h1 {
+    color: blue;
+    text-shadow: -2px 0 yellow, 0 2px yellow, 2px 0 yellow, 0 -2px yellow;
+    padding-top:100px;
+}
+
+/* Modal properties */
+
+.modal-header, .modal-footer{
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    background-color:rgb(22, 8, 87);
+}
+
+.modal-body{
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    background-color:rgb(14, 13, 17);
+}
+
+li {
+    font-size: 1.4em;
+}
+
+/* Character properties */
+
+.character-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.character {
+    background:white;
+    border: black 15px solid;
+    display: inline-block;
+    margin: 0px 5px 0px 5px;
+}
+
+.character:hover {
+    border-color: rgb(70, 243, 79);
+}
+
+.character-name, .character-health {
+    text-align: center;
+}
+
+/* Attack button properties */
+
+#atkButton {
+    border: 3px solid blue;
+    border-radius: 50px;
+    text-shadow: -3px 0 yellow, 0 3px yellow, 3px 0 yellow, 0 -3px yellow;
+    color: blue;
+    background-color: white;
+    padding: 15px 35px;
+    margin-top: 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 32px;
+} 
+
+#atkButton:hover {
+    background-color:yellow;
+}
+
+/* Battle area message */
+
+#battleMessage {
+    font-size: 1em;
+}
