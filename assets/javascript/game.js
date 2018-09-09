@@ -58,13 +58,11 @@ $(document).ready(function () { // document.ready start
   
   // Sound effects
 	var newGameSound = new Audio('./assets/sounds/newgame.wav');
-	// var restartSound = new Audio('./assets/sounds/restart.wav');
 	var selectHover = new Audio('./assets/sounds/hover.wav');
 	var selectSound = new Audio('./assets/sounds/select.wav');
 	var attackSound = new Audio('./assets/sounds/attack.wav');
-	// var errorSound = new Audio('./assets/sounds/negative.wav');
 	var winSound = new Audio('./assets/sounds/win.mp3');
-	// var loseSound = new Audio('./assets/sounds/defeat.wav');
+	var loseSound = new Audio('./assets/sounds/defeat.wav');
   
   // Character containers
 	var selectedCharacter;
@@ -74,25 +72,12 @@ $(document).ready(function () { // document.ready start
 	// Game state
 	var turnNumber = 1;
 	var defeated = 0;
-	var gameFinished = false;
 
 	//-----------------All Functions-----------------------
-	//Reset game state to default settings
-	function restartGame() {
-		selectedCharacter = "";
-		remainingCharacters = [];
-		opponent = "";
-		turnNumber = 1;
-		defeated = 0;
-		gameFinished = false;
-		restartSound.play()
-		winSound.pause();
-		//Reset game code goes here the above block may not be correct ??
-		};
 		
-	// Run restartGame when reset button is clicked
+	// Restart game when button is clicked
 		$("#restartGame").click(function (){
-			restartGame();
+			window.location.reload(true);
 		});
 
 	// Initailize game and create characters
@@ -204,11 +189,11 @@ $(document).ready(function () { // document.ready start
 		  	updateSelection(selectedCharacter, "#selectedCharacter");
   
 		  if (selectedCharacter.health <= 0) {
-				alert("You have been defeated");
-				gameFinished = true;
+				attackSound.pause();
+				loseSound.play();
 				clearMessage();
 				$("#atkButton").hide();
-				restartGame();
+				alert("You have been defeated");
 		  	}
 			}
 			
@@ -218,12 +203,11 @@ $(document).ready(function () { // document.ready start
   
 		  if (defeated >= remainingCharacters.length) {
 				zerotheme.pause();
+				attackSound.pause();
 				winSound.play()
 				clearMessage();
-				gameFinished = true;
 				alert("You win!!")
 				$("#atkButton").hide();
-				restartGame()
 		  	}
   
 				}
