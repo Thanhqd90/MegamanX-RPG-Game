@@ -5,41 +5,41 @@ $(document).ready(function () { // document.ready start
 	  "Megaman X": {
 		name: "Megaman X",
 		health: 500,
-		attack: 50,
+		attack: 25,
 		imageUrl: "assets/images/mmx.png",
-		enemyAttackBack: 50
+		enemyAttackBack: 15
 		},
 		
 	  "Zero": {
 		name: "Zero",
-		health: 500,
-		attack: 50,
+		health: 400,
+		attack: 35,
 		imageUrl: "assets/images/zero.png",
-		enemyAttackBack: 50
+		enemyAttackBack: 18
 		},
 		
 	  "Axl": {
 		name: "Axl",
-		health: 500,
-		attack: 50,
+		health: 450,
+		attack: 25,
 		imageUrl: "assets/images/axl.png",
-		enemyAttackBack: 50
+		enemyAttackBack: 25
 		},
 		
 	  "Sigma": {
 		name: "Sigma",
-		health: 500,
-		attack: 50,
+		health: 900,
+		attack: 45,
 		imageUrl: "assets/images/sigma.png",
 		enemyAttackBack: 50
 		},
 		
 	  "Vile": {
 		name: "Vile",
-		health: 500,
-		attack: 50,
+		health: 750,
+		attack: 40,
 		imageUrl: "assets/images/vile.png",
-		enemyAttackBack: 50
+		enemyAttackBack: 40
 		}
 		
 	};
@@ -62,7 +62,8 @@ $(document).ready(function () { // document.ready start
 	var selectHover = new Audio('./assets/sounds/hover.wav');
 	var selectSound = new Audio('./assets/sounds/select.wav');
 	var attackSound = new Audio('./assets/sounds/attack.wav');
-	// var winSound = new Audio('./assets/sounds/win.mp3');
+	// var errorSound = new Audio('./assets/sounds/negative.wav');
+	var winSound = new Audio('./assets/sounds/win.mp3');
 	// var loseSound = new Audio('./assets/sounds/defeat.wav');
   
   // Character containers
@@ -71,6 +72,8 @@ $(document).ready(function () { // document.ready start
 	var opponent;
 
 	// Game state
+	var turnNumber = 1;
+	var defeated = 0;
 	var gameFinished = false;
 
 	//-----------------All Functions-----------------------
@@ -79,8 +82,12 @@ $(document).ready(function () { // document.ready start
 		selectedCharacter = "";
 		remainingCharacters = [];
 		opponent = "";
+		turnNumber = 1;
+		defeated = 0;
 		gameFinished = false;
-		//Reset game code goes here ??
+		restartSound.play()
+		winSound.pause();
+		//Reset game code goes here the above block may not be correct ??
 		};
 		
 	// Run restartGame when reset button is clicked
@@ -162,7 +169,7 @@ $(document).ready(function () { // document.ready start
 			$(this).remove();
 			selectSound.play();
 			$("#currentOpponent").text("Current Opponent");
-			$(".attackButton").append('<button id="atkButton">Attack</button>')
+			$("#atkButton").css("display","inline-block");
 	  }
 	});
 
@@ -172,28 +179,26 @@ $(document).ready(function () { // document.ready start
 		createCharacter(charObj, areaRender);
 	};
 
-	// Execute function when attack button is clicked
-	//Alert and console log are to test if button actually works
+
 		$("#atkButton").on("click", function () { // On click event for attack button start
-				alert("clicked");
 
 				attackSound.play();
 
-				var attackMessage = "You attacked " + opponent.name + " for " + selectedCharacter.attack + " damage.";
+				var attackMessage = "You attacked " + opponent.name + " for " + (selectedCharacter.attack * turnNumber) + " damage.";
 				var counterAttackMessage = opponent.name + " attacked you back for " + opponent.enemyAttackBack + " damage.";
+			
 	
 	  	if ($("#opponent").children().length > 0) {
-				console.log("attack command clicked");
 
 				clearMessage();
-
-				opponent.health = opponent.health -= selectedCharacter.attack
+				opponent.health = opponent.health -= (selectedCharacter.attack * turnNumber)
   
 			if (opponent.health > 0) {
 				createMessage(attackMessage);
 				createMessage(counterAttackMessage);
 				selectedCharacter.health = selectedCharacter.health -= opponent.enemyAttackBack;
 
+			turnNumber++;
 		  	updateSelection(opponent, "#opponent");
 		  	updateSelection(selectedCharacter, "#selectedCharacter");
   
@@ -206,9 +211,13 @@ $(document).ready(function () { // document.ready start
 		  	}
 			}
 			
-			else { $("#opponent").empty();
+			else { 
+				$("#opponent").empty();
+				defeated++;
   
-		  if (remainingCharacters.length === 0) {
+		  if (defeated >= remainingCharacters.length) {
+				zerotheme.pause();
+				winSound.play()
 				clearMessage();
 				gameFinished = true;
 				alert("You win!!")
@@ -217,10 +226,13 @@ $(document).ready(function () { // document.ready start
 		  	}
   
 				}
+
 	  	}
 	  	else {
 		// Create alert to select opponent if opponent area is empty
 		clearMessage();
+		newGameSound.play();
+		attackSound.pause();
 		alert("You must select an opponent to battle!!");
 		}
 	}); // On click event for attack button end
@@ -233,7 +245,8 @@ $(document).ready(function () { // document.ready start
 		}; // createMessage end
 		
 		function clearMessage() { // clearMessage start
-			$("#battleMessage").text("");
+			$("#battleMessage").empty();
+			console.log("message has been cleared")
 		}; // clearMessage end
 		
 		
