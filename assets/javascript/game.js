@@ -109,6 +109,7 @@ $(document).ready(function () { // document.ready start
 			$( "#newGame" ).prop( "disabled",true);
 			$(".character-image").mouseenter(function() {
 			selectHover.play();
+			$("#atkButton").hide()
 			});
 
 		}); // Click event end
