@@ -4,55 +4,70 @@ $(document).ready(function () { // document.ready start
 
 	  "Megaman X": {
 		name: "Megaman X",
-		health: 500,
-		attack: 25,
+		health: 850,
+		attack: 30,
 		imageUrl: "assets/images/mmx.png",
-		enemyAttackBack: 15
+		enemyAttackBack: 45
 		},
 		
 	  "Zero": {
 		name: "Zero",
-		health: 400,
+		health: 750,
 		attack: 35,
 		imageUrl: "assets/images/zero.png",
-		enemyAttackBack: 18
+		enemyAttackBack: 50
 		},
 		
 	  "Axl": {
 		name: "Axl",
-		health: 450,
+		health: 800,
 		attack: 25,
 		imageUrl: "assets/images/axl.png",
-		enemyAttackBack: 25
+		enemyAttackBack: 40
 		},
 		
 	  "Sigma": {
 		name: "Sigma",
-		health: 900,
-		attack: 45,
+		health: 1000,
+		attack: 50,
 		imageUrl: "assets/images/sigma.png",
-		enemyAttackBack: 50
+		enemyAttackBack: 60
 		},
 		
 	  "Vile": {
 		name: "Vile",
-		health: 750,
+		health: 900,
 		attack: 40,
 		imageUrl: "assets/images/vile.png",
-		enemyAttackBack: 40
+		enemyAttackBack: 55
 		}
 		
 	};
   
 	// Music + button click event listener
-	var zerotheme = new Audio('./assets/sounds/zero.mp3');
+
+
+	var xTheme = new Audio('./assets/sounds/mmx.mp3');
+
+		$("#song1").on("click", function () {
+			xTheme.play();
+			zeroTheme.pause();
+		
+	  	});
+
+
+	var zeroTheme = new Audio('./assets/sounds/zero.mp3');
 	
-		$("#song").on("click", function () {
-	  	zerotheme.play();
+		$("#song2").on("click", function () {
+		  	zeroTheme.play();
+		  	xTheme.pause();
 		});
   
+	//Pause all music
+
 		$("#pause").on("click", function () {
-	  	zerotheme.pause();
+		  	zeroTheme.pause();
+		  	xTheme.pause();
 		});
   
   
@@ -184,16 +199,19 @@ $(document).ready(function () { // document.ready start
 				createMessage(counterAttackMessage);
 				selectedCharacter.health = selectedCharacter.health -= opponent.enemyAttackBack;
 
-			turnNumber++;
-		  	updateSelection(opponent, "#opponent");
-		  	updateSelection(selectedCharacter, "#selectedCharacter");
+				turnNumber++;
+		  		updateSelection(opponent, "#opponent");
+		  		updateSelection(selectedCharacter, "#selectedCharacter");
   
 		  if (selectedCharacter.health <= 0) {
 				attackSound.pause();
 				loseSound.play();
 				clearMessage();
-				$("#atkButton").hide();
 				alert("You have been defeated");
+				$("#atkButton").hide();
+				$(".hideContent").hide();
+				$("#yourCharacter").hide();
+				$("#selectedCharacter").hide();
 		  	}
 			}
 			
@@ -207,6 +225,9 @@ $(document).ready(function () { // document.ready start
 				winSound.play()
 				clearMessage();
 				alert("You win!!")
+				$(".hideContent").hide();
+				$("#yourCharacter").hide();
+				$("#selectedCharacter").hide();
 				$("#atkButton").hide();
 		  	}
   

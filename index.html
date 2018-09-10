@@ -27,21 +27,22 @@
     <nav class="navbar navbar-dark bg-dark"> <!-- Nav bar start-->
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" id="newGame" class="btn btn-secondary">New Game</button>
-                <button type="button" id="restartGame" class="btn btn-secondary">Restart Game</button>
+                <button type="button" id="newGame" class="btn btn-primary">New Game</button>
+                <button type="button" id="restartGame" class="btn btn-danger">Restart Game</button>
             </div>
         </div>
 
 <!-- Modal for how to play -->
 
         <div class="btn-group mr-2" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#howToPlay">How to Play</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#howToPlay">How to Play</button>
         </div>
 
 <!-- Music control -->
         <div class="btn-group" role="group" aria-label="Third group">
-            <button type="button" id="song" class="btn btn-secondary">Play Zero's Theme</button>
-            <button type="button" id="pause" class="btn btn-secondary">Pause Song</button>
+                <button type="button" id="song1" class="btn btn-primary">Play X's Theme</button>
+            <button type="button" id="song2" class="btn btn-danger">Play Zero's Theme</button>
+            <button type="button" id="pause" class="btn btn-secondary">Pause Music</button>
         </div>
     </nav> <!-- End nav bar-->
 
@@ -53,7 +54,7 @@
     </div>
 
 <!-- Character Select -->
-    <div class="clearFloat container charSelect">
+    <div class="clearFloat container hideContent charSelect">
         <div class="row justify-content-center">         
             <div id="characterSection">
                 <h2 class="selectCharacter text-center"></h2>
@@ -64,7 +65,7 @@
 
 <!-- Remaining opponents -->
 
-    <div class="container">
+    <div class="container hideContent">
         <div class="row justify-content-center">
             <div id="remainingOpponents">
                 <h2 class="text-center"></h2>
@@ -82,9 +83,9 @@
     </div>
 
   <!-- Selected character battle position (column 1)-->
-    <div class="container d-flex flex-row justify-content-center">
+    <div class="container d-flex flex-row hideContent justify-content-center">
             <div class="col-md-3">
-                <div class=" container section-title text-center">
+                <div class=" container text-center">
                     <div class="row justify-content-center">
                         <h3 id="yourCharacter"></h3>
                         <!-- Move selected character here -->
@@ -95,7 +96,7 @@
 
 <!-- Battle message area (column 2)-->
     <div class="col-md-6">
-        <div class="container">
+        <div class="container hideContent">
             <div class="row justify-content-center">
                 <div class="col-6 text-center" id="battleMessage"></div>
             </div>
@@ -104,7 +105,7 @@
 
 <!-- Current opponent battle position (column 3)-->
     <div class="col-md-3">
-        <div class="character-section">
+        <div class="character-section hideContent">
              <div class="row justify-content-center">
                 <h3 id="currentOpponent"></h3>
                 <!-- Move opponent here -->
