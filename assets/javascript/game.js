@@ -4,42 +4,42 @@ $(document).ready(function () { // document.ready start
 
 	  "Megaman X": {
 		name: "Megaman X",
-		health: 850,
-		attack: 30,
+		health: 900,
+		attack: 25,
 		imageUrl: "assets/images/mmx.png",
-		enemyAttackBack: 45
+		enemyAttackBack: 50
 		},
 		
 	  "Zero": {
 		name: "Zero",
-		health: 750,
-		attack: 35,
+		health: 800,
+		attack: 30,
 		imageUrl: "assets/images/zero.png",
-		enemyAttackBack: 50
+		enemyAttackBack: 55
 		},
 		
 	  "Axl": {
 		name: "Axl",
-		health: 800,
-		attack: 25,
+		health: 850,
+		attack: 20,
 		imageUrl: "assets/images/axl.png",
-		enemyAttackBack: 40
+		enemyAttackBack: 45
 		},
 		
 	  "Sigma": {
 		name: "Sigma",
-		health: 1000,
+		health: 1200,
 		attack: 50,
 		imageUrl: "assets/images/sigma.png",
-		enemyAttackBack: 60
+		enemyAttackBack: 70
 		},
 		
 	  "Vile": {
 		name: "Vile",
-		health: 900,
+		health: 1100,
 		attack: 40,
 		imageUrl: "assets/images/vile.png",
-		enemyAttackBack: 55
+		enemyAttackBack: 60
 		}
 		
 	};
@@ -220,7 +220,7 @@ $(document).ready(function () { // document.ready start
 				defeated++;
   
 		  if (defeated >= remainingCharacters.length) {
-				zerotheme.pause();
+				zeroTheme.pause();
 				attackSound.pause();
 				winSound.play()
 				clearMessage();
