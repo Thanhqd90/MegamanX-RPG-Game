@@ -47,7 +47,7 @@ $(document).ready(function () { // document.ready start
 	// Music + button click event listener
 
 
-	var xTheme = new Audio('./assets/sounds/mmx.mp3');
+	var xTheme = new Audio('./assets/sounds/mmxtheme.mp3');
 
 		$("#song1").on("click", function () {
 			xTheme.play();
@@ -56,7 +56,7 @@ $(document).ready(function () { // document.ready start
 	  	});
 
 
-	var zeroTheme = new Audio('./assets/sounds/zero.mp3');
+	var zeroTheme = new Audio('./assets/sounds/zerotheme.mp3');
 	
 		$("#song2").on("click", function () {
 		  	zeroTheme.play();
